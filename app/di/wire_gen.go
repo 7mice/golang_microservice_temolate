@@ -18,8 +18,7 @@ import (
 
 func Init() *Initialization {
 	conn := connections.ConnectToNatsBroker()
-	db := connections.ConnectToDB()
-	testRepositoryImpl := repository.TestRepositoryInit(db)
+	testRepositoryImpl := repository.TestRepositoryInit()
 	testServiceImpl := service.TestServiceInit(testRepositoryImpl)
 	testControllerImpl := controller.TestControllerInit(testServiceImpl)
 	initialization := NewInitialization(conn, testControllerImpl)
@@ -28,6 +27,6 @@ func Init() *Initialization {
 
 // wire.go:
 
-var connectionsSet = wire.NewSet(connections.ConnectToDB, connections.ConnectToNatsBroker, connections.ConnectToRedis)
+var connectionsSet = wire.NewSet(connections.ConnectToNatsBroker, connections.ConnectToRedis)
 
 var testSet = wire.NewSet(repository.TestRepositoryInit, wire.Bind(new(repository.TestRepository), new(*repository.TestRepositoryImpl)), service.TestServiceInit, wire.Bind(new(service.TestService), new(*service.TestServiceImpl)), controller.TestControllerInit, wire.Bind(new(controller.TestController), new(*controller.TestControllerImpl)))

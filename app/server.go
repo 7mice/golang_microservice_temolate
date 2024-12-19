@@ -8,4 +8,6 @@ import (
 func Start() {
 	u := di.Init()
 	nats.Init(u)
+
+	select {}
 }

@@ -13,7 +13,6 @@ import (
 )
 
 var connectionsSet = wire.NewSet(
-	connections.ConnectToDB,
 	connections.ConnectToNatsBroker,
 	connections.ConnectToRedis,
 )

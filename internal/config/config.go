@@ -8,7 +8,6 @@ import (
 
 type Config struct {
 	IsDebug  bool    `yaml:"is_debug" env-description:"Is debug?" env-required:"true"`
-	BotToken string  `yaml:"bot_token" env-required:"true"`
 	NatsDsn  *string `yaml:"nats_dsn" env-description:"Nats DSN"`
 	RedisDsn *string `yaml:"redis_dsn" env-description:"Redis DSN"`
 }
